@@ -1,0 +1,38 @@
+server:
+  port: 4001
+spring:
+  application:
+    name:  ms-bootcoin-wallet-service
+ # config:
+  #  import: optional:configserver:http://ms-bank-config-server:8888
+  data: 
+    mongodb:
+     host: localhost
+     port: 27017
+     database: Bootcoin
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+        group-id: myGroup
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+           
+                                                      
+  
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+
+kafka:
+  topic:
+    bootcoin:
+      wallet:
+        create:
+          name: bootcoin-wallet-create
+      wallet-balance:
+        create:
+          name: bootcoin-wallet-balance-create
